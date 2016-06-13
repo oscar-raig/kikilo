@@ -1,0 +1,38 @@
+<html>
+<head></head>
+<body>
+{{#framework}}
+<h1>Framework {{ name }}</h1>
+{{/framework}}
+{{^framework}}
+<h1>New Framework</h1>
+{{/framework}}
+
+<form action="/framework" method="post">
+    <table>
+        {{#framework}}
+        <tr>
+            <th>Id</th>
+            <td><input type="hidden" name="id" value="{{ id }}" /> {{ id }}</td>
+        </tr>
+        {{/framework}}
+        <tr>
+            <th>Name</th>
+            <td><input name="name" type="text" value="{{#framework}}{{name}}{{/framework}}" /></td>
+        </tr>
+        <tr>
+            <th>Love</th>
+            <td><input name="love" type="number" value="{{#framework}}{{love}}{{/framework}}" /></td>
+        </tr>
+        {{#framework}}
+        <tr>
+            <th>Last Change Date</th>
+            <td>{{changeData}}</td>
+        </tr>
+        {{/framework}}
+    </table>
+    <input type="submit" value="Save" />
+</form>
+
+</body>
+</html>

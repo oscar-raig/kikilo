@@ -1,0 +1,14 @@
+<html>
+<head></head>
+<body>
+    <h1>Login</h1>
+    <form action="/login.check" method="post">
+        <p><input type="text" name="user" /></p>
+        <p><input type="password" name="password" /></p>
+        <p><input type="submit" value="Submit" /></p>
+    </form>
+    {{#error}}
+    <p class="error">{{error}}</p>
+    {{/error}}
+</body>
+</html>
