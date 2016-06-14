@@ -1,7 +1,9 @@
 package cat.raig.kikilo.services;
 
 import cat.raig.kikilo.entities.Framework;
+import cat.raig.kikilo.entities.Video;
 import cat.raig.kikilo.repository.FrameworkRepository;
+import cat.raig.kikilo.repository.VideoRepository;
 import cat.raig.kikilo.security.UserSession;
 import cat.raig.kikilo.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +17,17 @@ import java.util.List;
 public class FrameworkService {
   private UserService userService;
   private FrameworkRepository frameworkRepository;
+  private VideoRepository videoRepository;
   private UserSession userSession;
 
   @Autowired
   public FrameworkService(UserService userService,
-                          FrameworkRepository frameworkRepository, UserSession userSession) {
+                          FrameworkRepository frameworkRepository, UserSession userSession,
+                          VideoRepository videoRepository) {
     this.userService = userService;
     this.frameworkRepository = frameworkRepository;
     this.userSession = userSession;
+    this.videoRepository = videoRepository;
   }
 
   public Framework addFramework(Long owner, String name, Long love) {
