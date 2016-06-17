@@ -17,6 +17,7 @@ public class PersistenceConfiguration {
   @Autowired
   private UserRepository repository;
 
+
   @PostConstruct
   public void initializeDatabase() {
     logger.info("Creating users");

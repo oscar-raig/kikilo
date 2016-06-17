@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+    <bean id="YouTubeRepository" class="cat.raig.kikilo.infrastructure.YouTubeRepository">
+        <constructor-arg ref="transport"/>
+        <constructor-arg ref="jsonFactory"/>
+        <constructor-arg ref="httpRequestInitializer"/>
+    </bean>
+    <bean id="transport" class="com.google.api.client.http.javanet.NetHttpTransport" />
+    <bean id="jsonFactory" class="com.google.api.client.json.jackson2.JacksonFactory" />
+    <bean id="httpRequestInitializer" class="cat.raig.kikilo.repository.HttpRequestInitializerYouTube" />
+</beans>

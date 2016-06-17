@@ -3,14 +3,18 @@ package cat.raig.kikilo.infrastructure;
 import cat.raig.kikilo.entities.Video;
 import com.google.api.client.http.HttpRequest;
 import com.google.api.client.http.HttpRequestInitializer;
+import com.google.api.client.http.HttpTransport;
+import com.google.api.client.json.JsonFactory;
 import com.google.api.services.youtube.YouTube;
 import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.SearchListResponse;
 import com.google.api.services.youtube.model.SearchResult;
 import com.google.api.services.youtube.model.Thumbnail;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -23,8 +27,9 @@ public class YouTubeRepository implements  cat.raig.kikilo.repository.YouTubeRep
   private  YouTube youtube;
   private Properties properties;
 
-  public YouTubeRepository( ) {
-   InitializeYouTube();
+  public YouTubeRepository(HttpTransport transport, JsonFactory jsonFactory,
+                           HttpRequestInitializer requestInitializer) {
+   InitializeYouTube(transport, jsonFactory, requestInitializer);
   }
 
 
@@ -47,6 +52,7 @@ public class YouTubeRepository implements  cat.raig.kikilo.repository.YouTubeRep
       List<SearchResult> searchResultList = searchResponse.getItems();
       if (searchResultList != null) {
         prettyPrint(searchResultList.iterator(), keyWords);
+        return resulstToDto(searchResultList.iterator(),keyWords);
       }
 
     } catch (IOException e) {
@@ -56,7 +62,8 @@ public class YouTubeRepository implements  cat.raig.kikilo.repository.YouTubeRep
     return null;
   }
 
-  private void InitializeYouTube() {
+  private void InitializeYouTube(HttpTransport transport, JsonFactory jsonFactory,
+                                 HttpRequestInitializer requestInitializer) {
 
     properties = new Properties();
     try {
@@ -68,10 +75,8 @@ public class YouTubeRepository implements  cat.raig.kikilo.repository.YouTubeRep
         + " : " + e.getMessage());
       System.exit(1);
     }
-    youtube = new YouTube.Builder(Auth.HTTP_TRANSPORT, Auth.JSON_FACTORY, new HttpRequestInitializer() {
-      public void initialize(HttpRequest request) throws IOException {
-      }
-    }).setApplicationName("youtube-cmdline-search-sample").build();
+
+    youtube = new YouTube.Builder(transport, jsonFactory, requestInitializer).setApplicationName("youtube-cmdline-search-sample").build();
 
   }
 
@@ -102,5 +107,39 @@ public class YouTubeRepository implements  cat.raig.kikilo.repository.YouTubeRep
         System.out.println("\n-------------------------------------------------------------\n");
       }
     }
+  }
+
+  private  List<Video> resulstToDto(Iterator<SearchResult> iteratorSearchResults, String query) {
+
+    List<Video> videos = new ArrayList<>();
+
+    System.out.println("\n=============================================================");
+    System.out.println(
+      "   First " + NUMBER_OF_VIDEOS_RETURNED + " videos for search on \"" + query + "\".");
+    System.out.println("=============================================================\n");
+
+    if (!iteratorSearchResults.hasNext()) {
+      System.out.println(" There aren't any results for your query.");
+    }
+
+    while (iteratorSearchResults.hasNext()) {
+
+      SearchResult singleVideo = iteratorSearchResults.next();
+      ResourceId rId = singleVideo.getId();
+
+      // Confirm that the result represents a video. Otherwise, the
+      // item will not contain a video ID.
+      if (rId.getKind().equals("youtube#video")) {
+        Thumbnail thumbnail = singleVideo.getSnippet().getThumbnails().getDefault();
+
+        System.out.println(" Video Id" + rId.getVideoId());
+        System.out.println(" Title: " + singleVideo.getSnippet().getTitle());
+        System.out.println(" Thumbnail: " + thumbnail.getUrl());
+        System.out.println("\n-------------------------------------------------------------\n");
+        Video video = new Video(singleVideo.getSnippet().getTitle(),rId.getVideoId());
+        videos.add(video);
+      }
+    }
+    return videos;
   }
 }
