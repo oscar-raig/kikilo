@@ -30,14 +30,7 @@ public class VideoService {
 
   public  List<Video> getMyVideos()  {
 
-    if (userSession == null) {
-      throw new ForbiddenVideoService();
-    }
-
-    User user = userService.getUser(userSession.getId());
-    if (user == null) {
-      throw new ForbiddenVideoService();
-    }
+    User user = getUser();
 
     List<String> roles = user.getRoles();
     if (roles.stream().anyMatch(p -> p.equalsIgnoreCase("VIEW"))) {
@@ -47,7 +40,20 @@ public class VideoService {
     return new ArrayList<>(0);
   }
 
+  private User getUser() {
+    if (userSession == null) {
+      throw new ForbiddenVideoService();
+    }
+
+    User user = userService.getUser(userSession.getId());
+    if (user == null) {
+      throw new ForbiddenVideoService();
+    }
+    return user;
+  }
+
   public Video getVideo() {
+    User user = getUser();
     return null;
   }
 

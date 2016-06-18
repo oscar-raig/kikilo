@@ -65,9 +65,26 @@ public class VideoServiceShould {
     when(userService.getUser(any())).thenReturn(new User("a username", "a password ",
             "a email", roles));
     when(youTubeRepository.findByKeyWords(any())).thenReturn(expectedListOfVideos);
+
     List<Video> listOfVidoes = videoService.getMyVideos();
 
     assertThat(listOfVidoes.size(), is(expectedListOfVideos.size()));
   }
+
+  @Test(expected = VideoService.ForbiddenVideoService.class)
+  public void getVideoShouldReturnExceptionWhenUserSessionIsNull() {
+    VideoService videoService = new VideoService(
+            videoRepository, null, userService, youTubeRepository);;
+    videoService.getVideo();
+
+  }
+
+  @Test(expected = VideoService.ForbiddenVideoService.class)
+  public void getVideoShouldReturnExceptionWhenUserSessionReturnsNull() {
+
+    when(userService.getUser(any())).thenReturn(null);
+    videoService.getVideo();
+  }
+
 
 }
