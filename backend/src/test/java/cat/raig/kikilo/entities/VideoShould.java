@@ -16,9 +16,9 @@ public class VideoShould {
   @Test
   public void constructorWorks() {
     Video video = new Video(A_TITLE, A_URL, new Long(1));
-    assertThat(video.getTitle(),is(A_TITLE));
-    assertThat(video.getUrl(),is(A_URL));
-    assertThat(video.getId(),is(notNullValue()));
+    assertThat(video.getTitle(), is(A_TITLE));
+    assertThat(video.getUrl(), is(A_URL));
+    assertThat(video.getId(), is(notNullValue()));
   }
 
 }

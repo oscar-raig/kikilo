@@ -31,6 +31,6 @@ public class PersistenceConfiguration {
   @PostConstruct
   public void initializeDatabase() {
     logger.info("Creating users");
-    repository.save(new User("admin", "admin","myemail", asList("VIEW", "EDIT", "ADD")));
+    repository.save(new User("admin", "admin", "myemail", asList("VIEW", "EDIT", "ADD")));
   }
 }

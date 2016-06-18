@@ -34,14 +34,14 @@ public class VideoServiceShould {
     userService = Mockito.mock(UserService.class);
     youTubeRepository = Mockito.mock(YouTubeRepository.class);
     videoService = new VideoService(
-            videoRepository,userSession, userService, youTubeRepository);
+            videoRepository, userSession, userService, youTubeRepository);
   }
 
   @Test(expected = VideoService.ForbiddenVideoService.class)
   public void getMyVideosreturnExceptionWhenUserSessionIsNull() {
 
     VideoService videoService = new VideoService(
-            videoRepository,null, userService, youTubeRepository);;
+            videoRepository, null, userService, youTubeRepository);;
     videoService.getMyVideos();
 
   }
@@ -57,17 +57,17 @@ public class VideoServiceShould {
   public void getMyVideosShouldReturnAListOfVideos() {
     List<Video> expectedListOfVideos = new ArrayList(){
       {
-        add(new Video("a title","a url", new Long(1)));
+        add(new Video("a title", "a url", new Long(1)));
       }
     };
 
     List<String> roles = Arrays.asList("View");
-    when(userService.getUser(any())).thenReturn(new User("a username","a password ",
-            "a email",roles));
+    when(userService.getUser(any())).thenReturn(new User("a username", "a password ",
+            "a email", roles));
     when(youTubeRepository.findByKeyWords(any())).thenReturn(expectedListOfVideos);
     List<Video> listOfVidoes = videoService.getMyVideos();
 
-    assertThat(listOfVidoes.size(),is(expectedListOfVideos.size()));
+    assertThat(listOfVidoes.size(), is(expectedListOfVideos.size()));
   }
 
 }

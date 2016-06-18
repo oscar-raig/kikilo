@@ -18,7 +18,7 @@ public class UserShould {
     List<String> permission = Arrays.asList("ADD", "EDIT");
     User user = new User("a username", "a password", "an email", permission);
 
-    assertThat(user.getId(),is(nullValue()));
+    assertThat(user.getId(), is(nullValue()));
 
   }
 

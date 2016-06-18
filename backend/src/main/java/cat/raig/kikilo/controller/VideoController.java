@@ -51,7 +51,7 @@ public class VideoController {
   }
 
   @RequestMapping(value = "/video", method = POST)
-  public String saveVideo(@ModelAttribute SaveFrameworkRequest request,ModelMap model) {
+  public String saveVideo(@ModelAttribute SaveFrameworkRequest request, ModelMap model) {
     List<Video> listOfVideos = videoService.getMyVideos();
     model.put("videos", listOfVideos);
     Video video = request.getId() != null ? videoService.getVideo() : null;

@@ -209,6 +209,9 @@
             <property name="exceptionVariableName" value="expected"/>
         </module>
         <module name="UnusedImports"/>
+        <module name="WhitespaceAfter">
+            <property name="tokens" value="COMMA, SEMI"/>
+        </module>
         <!--module name="CommentsIndentation"/-->
     </module>
 </module>

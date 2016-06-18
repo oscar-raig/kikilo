@@ -20,7 +20,7 @@ public class YouTubeRepositoryShould {
         Auth.JSON_FACTORY, new HttpRequestInitializerYouTube());
     List<Video> videos = youTubeRepository.findByKeyWords("rojo");
 
-    assertThat(videos.size(),is(25));
+    assertThat(videos.size(), is(25));
   }
 
 }

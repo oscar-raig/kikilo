@@ -49,7 +49,7 @@ public class YouTubeRepository implements  cat.raig.kikilo.repository.YouTubeRep
       List<SearchResult> searchResultList = searchResponse.getItems();
       if (searchResultList != null) {
         prettyPrint(searchResultList.iterator(), keyWords);
-        return resulstToDto(searchResultList.iterator(),keyWords);
+        return resulstToDto(searchResultList.iterator(), keyWords);
       }
 
     } catch (IOException e) {
@@ -135,7 +135,7 @@ public class YouTubeRepository implements  cat.raig.kikilo.repository.YouTubeRep
         System.out.println(" Thumbnail: " + thumbnail.getUrl());
         System.out.println("\n-------------------------------------------------------------\n");
         Video video = new Video(singleVideo.getSnippet().getTitle(),
-                resourceId.getVideoId(),new Long(1));
+                resourceId.getVideoId(), new Long(1));
         videos.add(video);
       }
     }
