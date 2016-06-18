@@ -28,15 +28,15 @@ public class VideoService {
     this.youTubeRepository = youTubeRepository;
   }
 
-  public  List<Video> getMyVideos() {
+  public  List<Video> getMyVideos()  {
 
     if (userSession == null) {
-      return new ArrayList<>(0);
+      throw new ForbiddenVideoService();
     }
 
     User user = userService.getUser(userSession.getId());
     if (user == null) {
-      return new ArrayList<>(0);
+      throw new ForbiddenVideoService();
     }
 
     List<String> roles = user.getRoles();
@@ -45,5 +45,20 @@ public class VideoService {
     }
 
     return new ArrayList<>(0);
+  }
+
+  public Video getVideo() {
+    return null;
+  }
+
+  public void addVideos(Long id, String name, Long love) {
+  }
+
+  public void updateVideo(Long id, Long id1, String name, Long love) {
+
+  }
+
+
+  public class ForbiddenVideoService extends RuntimeException {
   }
 }

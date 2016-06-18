@@ -9,18 +9,19 @@ public class Video {
   @Id
   @GeneratedValue
   private Long id;
-  String title;
+  private String title;
+  private String url;
 
   public void setId(Long id) {
     this.id = id;
   }
 
-  String url;
 
-  public Video(String title, String url) {
+
+  public Video(String title, String url, Long id) {
     this.title = title;
     this.url = url;
-
+    this.id = id;
   }
 
   public String getTitle() {

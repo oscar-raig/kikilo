@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 
@@ -17,7 +18,7 @@ public class UserShould {
     List<String> permission = Arrays.asList("ADD", "EDIT");
     User user = new User("a username", "a password", "an email", permission);
 
-    assertThat(user.getId(),is(0));
+    assertThat(user.getId(),is(nullValue()));
 
   }
 

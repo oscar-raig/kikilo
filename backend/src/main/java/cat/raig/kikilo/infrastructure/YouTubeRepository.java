@@ -134,7 +134,8 @@ public class YouTubeRepository implements  cat.raig.kikilo.repository.YouTubeRep
         System.out.println(" Title: " + singleVideo.getSnippet().getTitle());
         System.out.println(" Thumbnail: " + thumbnail.getUrl());
         System.out.println("\n-------------------------------------------------------------\n");
-        Video video = new Video(singleVideo.getSnippet().getTitle(),resourceId.getVideoId());
+        Video video = new Video(singleVideo.getSnippet().getTitle(),
+                resourceId.getVideoId(),new Long(1));
         videos.add(video);
       }
     }

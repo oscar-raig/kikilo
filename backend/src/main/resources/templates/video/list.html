@@ -10,15 +10,13 @@
         <th>Last Change Date</th>
         <th>&nbsp;</th>
     </tr>
-    {{#frameworks}}
+    {{#videos}}
     <tr>
-        <td>{{id}}</td>
-        <td>{{name}}</td>
-        <td>{{love}}</td>
-        <td>{{changeData}}</td>
+        <td>{{Id}}</td>
+        <td>{{Title}}</td>
         <td><a href="/framework/edit/{{id}}">Edit</a></td>
     </tr>
-    {{/frameworks}}
+    {{/videos}}
 </table>
 <a href="/video/create">New Video</a>
 </body>

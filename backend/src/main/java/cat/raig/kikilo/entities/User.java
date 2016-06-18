@@ -11,8 +11,7 @@ import java.util.List;
 @Entity
 public class User {
 
-  @Id
-  @GeneratedValue
+  @Id @GeneratedValue
   private Long id;
   @Column(unique = true)
   private String username;
