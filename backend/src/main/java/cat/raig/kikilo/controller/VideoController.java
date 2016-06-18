@@ -57,7 +57,7 @@ public class VideoController {
     Long videoId = new Long(1);
     Video video = request.getId() != null ? videoService.getVideo(videoId) : null;
     if (video == null) {
-      videoService.addVideos(userSession.getId(), request.getName(), request.getLove());
+      videoService.addVideo( video);
     } else {
       videoService.updateVideo(userSession.getId(), request.getId(),
               request.getName(), request.getLove());

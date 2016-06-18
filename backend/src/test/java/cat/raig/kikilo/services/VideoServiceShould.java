@@ -102,4 +102,25 @@ public class VideoServiceShould {
     verify(videoRepository).findByid(videoId);
   }
 
+
+  @Test(expected = VideoService.ForbiddenVideoService.class)
+  public void addVideoShouldReturnExceptionWhenUserSessionIsNull() {
+    VideoService videoService = new VideoService(
+            videoRepository, null, userService, youTubeRepository);
+    Long videoId = new Long(1);
+    Video video = new Video("a video title", " a url ", videoId);
+    videoService.addVideo(video);
+
+  }
+
+  @Test(expected = VideoService.ForbiddenVideoService.class)
+  public void addVideoShouldReturnExceptionWhenUserSessionReturnsNull() {
+
+    when(userService.getUser(any())).thenReturn(null);
+    Long videoId = new Long(1);
+    Video video = new Video("a video title", " a url ", videoId);
+    videoService.addVideo(video);
+  }
+
+
 }

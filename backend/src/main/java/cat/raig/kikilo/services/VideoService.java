@@ -57,7 +57,8 @@ public class VideoService {
     return videoRepository.findByid(videoId);
   }
 
-  public void addVideos(Long id, String name, Long love) {
+  public void addVideo(Video video) {
+    User user = getUser();
   }
 
   public void updateVideo(Long id, Long id1, String name, Long love) {
