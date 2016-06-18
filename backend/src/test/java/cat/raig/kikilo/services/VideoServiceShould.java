@@ -3,11 +3,9 @@ package cat.raig.kikilo.services;
 
 import cat.raig.kikilo.entities.User;
 import cat.raig.kikilo.entities.Video;
-import cat.raig.kikilo.repository.UserRepository;
 import cat.raig.kikilo.repository.VideoRepository;
 import cat.raig.kikilo.repository.YouTubeRepository;
 import cat.raig.kikilo.security.UserSession;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

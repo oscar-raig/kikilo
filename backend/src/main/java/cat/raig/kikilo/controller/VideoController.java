@@ -1,12 +1,9 @@
 package cat.raig.kikilo.controller;
 
 import cat.raig.kikilo.controller.request.SaveFrameworkRequest;
-import cat.raig.kikilo.entities.Framework;
 import cat.raig.kikilo.entities.Video;
 import cat.raig.kikilo.security.UserSession;
-import cat.raig.kikilo.services.FrameworkService;
 import cat.raig.kikilo.services.VideoService;
-import javassist.bytecode.stackmap.TypeData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

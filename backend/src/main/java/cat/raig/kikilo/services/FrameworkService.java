@@ -1,7 +1,6 @@
 package cat.raig.kikilo.services;
 
 import cat.raig.kikilo.entities.Framework;
-import cat.raig.kikilo.entities.Video;
 import cat.raig.kikilo.repository.FrameworkRepository;
 import cat.raig.kikilo.repository.VideoRepository;
 import cat.raig.kikilo.security.UserSession;
