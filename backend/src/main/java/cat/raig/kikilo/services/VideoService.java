@@ -59,6 +59,7 @@ public class VideoService {
 
   public void addVideo(Video video) {
     User user = getUser();
+    videoRepository.save(video);
   }
 
   public void updateVideo(Long id, Long id1, String name, Long love) {

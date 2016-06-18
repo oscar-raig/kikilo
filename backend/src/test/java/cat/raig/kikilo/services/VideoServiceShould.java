@@ -122,5 +122,18 @@ public class VideoServiceShould {
     videoService.addVideo(video);
   }
 
+  @Test
+  public void addVideoShouldSaveAVideo() {
+
+    List<String> roles = Arrays.asList("View");
+    when(userService.getUser(any())).thenReturn(new User("a username", "a password ",
+            "a email", roles));
+    Long videoId = new Long(1);
+    Video video = new Video("a video title", " a url ", videoId);
+    videoService.addVideo(video);
+
+    verify(videoRepository).save(video);
+  }
+
 
 }
