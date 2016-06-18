@@ -17,6 +17,7 @@ import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 public class VideoServiceShould {
@@ -74,8 +75,9 @@ public class VideoServiceShould {
   @Test(expected = VideoService.ForbiddenVideoService.class)
   public void getVideoShouldReturnExceptionWhenUserSessionIsNull() {
     VideoService videoService = new VideoService(
-            videoRepository, null, userService, youTubeRepository);;
-    videoService.getVideo();
+            videoRepository, null, userService, youTubeRepository);
+    Long videoId = new Long(1);
+    videoService.getVideo(videoId);
 
   }
 
@@ -83,8 +85,21 @@ public class VideoServiceShould {
   public void getVideoShouldReturnExceptionWhenUserSessionReturnsNull() {
 
     when(userService.getUser(any())).thenReturn(null);
-    videoService.getVideo();
+    Long videoId = new Long(1);
+    videoService.getVideo(videoId);
   }
 
+  @Test
+  public void getVideoShouldReturnAVideo() {
+
+    List<String> roles = Arrays.asList("View");
+    when(userService.getUser(any())).thenReturn(new User("a username", "a password ",
+            "a email", roles));
+
+    Long videoId = new Long(1);
+    videoService.getVideo(videoId);
+
+    verify(videoRepository).findByid(videoId);
+  }
 
 }

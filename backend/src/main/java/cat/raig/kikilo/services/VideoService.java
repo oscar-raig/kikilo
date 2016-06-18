@@ -52,9 +52,9 @@ public class VideoService {
     return user;
   }
 
-  public Video getVideo() {
+  public Video getVideo(Long videoId) {
     User user = getUser();
-    return null;
+    return videoRepository.findByid(videoId);
   }
 
   public void addVideos(Long id, String name, Long love) {

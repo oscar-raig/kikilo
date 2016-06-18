@@ -54,7 +54,8 @@ public class VideoController {
   public String saveVideo(@ModelAttribute SaveFrameworkRequest request, ModelMap model) {
     List<Video> listOfVideos = videoService.getMyVideos();
     model.put("videos", listOfVideos);
-    Video video = request.getId() != null ? videoService.getVideo() : null;
+    Long videoId = new Long(1);
+    Video video = request.getId() != null ? videoService.getVideo(videoId) : null;
     if (video == null) {
       videoService.addVideos(userSession.getId(), request.getName(), request.getLove());
     } else {
