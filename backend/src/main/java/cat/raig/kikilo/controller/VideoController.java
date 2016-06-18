@@ -59,8 +59,7 @@ public class VideoController {
     if (video == null) {
       videoService.addVideo( video);
     } else {
-      videoService.updateVideo(userSession.getId(), request.getId(),
-              request.getName(), request.getLove());
+      videoService.updateVideo(video);
     }
 
     return "redirect:/video/list";

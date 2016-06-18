@@ -136,4 +136,38 @@ public class VideoServiceShould {
   }
 
 
+
+  @Test(expected = VideoService.ForbiddenVideoService.class)
+  public void updateVeideoShouldReturnExceptionWhenUserSessionIsNull() {
+    VideoService videoService = new VideoService(
+            videoRepository, null, userService, youTubeRepository);
+    Long videoId = new Long(1);
+    Video video = new Video("a video title", " a url ", videoId);
+    videoService.updateVideo(video);
+
+  }
+
+  @Test(expected = VideoService.ForbiddenVideoService.class)
+  public void updateVideoShouldReturnExceptionWhenUserSessionReturnsNull() {
+
+    when(userService.getUser(any())).thenReturn(null);
+    Long videoId = new Long(1);
+    Video video = new Video("a video title", " a url ", videoId);
+    videoService.updateVideo(video);
+  }
+
+  @Test
+  public void updateVideoShouldSaveAVideo() {
+
+    List<String> roles = Arrays.asList("View");
+    when(userService.getUser(any())).thenReturn(new User("a username", "a password ",
+            "a email", roles));
+    Long videoId = new Long(1);
+    Video video = new Video("a video title", " a url ", videoId);
+    videoService.updateVideo(video);
+
+    verify(videoRepository).save(video);
+  }
+
+
 }

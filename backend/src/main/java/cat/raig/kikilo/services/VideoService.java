@@ -62,8 +62,9 @@ public class VideoService {
     videoRepository.save(video);
   }
 
-  public void updateVideo(Long id, Long id1, String name, Long love) {
-
+  public void updateVideo(Video video) {
+    User user = getUser();
+    videoRepository.save(video);
   }
 
 
