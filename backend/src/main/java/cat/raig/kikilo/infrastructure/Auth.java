@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Auth {
@@ -48,7 +49,8 @@ public class Auth {
 
     // Load client secrets.
     Reader clientSecretReader =
-            new InputStreamReader(Auth.class.getResourceAsStream("/client_secrets.json"));
+            new InputStreamReader(Auth.class.getResourceAsStream("/client_secrets.json"),
+                    StandardCharsets.UTF_8);
     GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, clientSecretReader);
 
     // Checks that the defaults have been replaced (Default = "Enter X here").

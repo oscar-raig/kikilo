@@ -28,7 +28,8 @@ public class VideoService {
     this.youTubeRepository = youTubeRepository;
   }
 
-  public  List<Video> getMyFrameworks() {
+  public  List<Video> getMyVideos() {
+
     if (userSession == null) {
       return new ArrayList<>(0);
     }

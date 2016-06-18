@@ -11,8 +11,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 @Import(PersistenceConfiguration.class)
 public class DemoApplication {
   public static void main(String[] args) {
-    ApplicationContext context =
-        new ClassPathXmlApplicationContext("Beans.xml");
+//    ApplicationContext context =
+//        new ClassPathXmlApplicationContext("Beans.xml");
     SpringApplication.run(DemoApplication.class, args);
   }
 }

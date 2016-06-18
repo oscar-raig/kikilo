@@ -6,6 +6,8 @@
     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
 
+
+
     <bean id="YouTubeRepository" class="cat.raig.kikilo.infrastructure.YouTubeRepository">
         <constructor-arg ref="transport"/>
         <constructor-arg ref="jsonFactory"/>
