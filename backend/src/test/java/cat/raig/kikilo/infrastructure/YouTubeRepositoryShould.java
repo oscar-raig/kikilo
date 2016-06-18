@@ -17,7 +17,7 @@ public class YouTubeRepositoryShould {
   @Test
   public void sampleUsage() {
     YouTubeRepository youTubeRepository = new YouTubeRepository(Auth.HTTP_TRANSPORT,
-      Auth.JSON_FACTORY, new HttpRequestInitializerYouTube());
+        Auth.JSON_FACTORY, new HttpRequestInitializerYouTube());
     List<Video> videos = youTubeRepository.findByKeyWords("rojo");
 
     assertThat(videos.size(),is(25));
