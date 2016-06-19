@@ -1,0 +1,23 @@
+<html>
+<head></head>
+<body>
+<h1>Videos List</h1>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Love</th>
+        <th>Last Change Date</th>
+        <th>&nbsp;</th>
+    </tr>
+    {{#videos}}
+    <tr>
+        <td>{{Id}}</td>
+        <td>{{Title}}</td>
+        <td><a href="/framework/edit/{{id}}">Edit</a></td>
+    </tr>
+    {{/videos}}
+</table>
+<a href="/video/create">New Video</a>
+</body>
+</html>

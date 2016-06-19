@@ -30,7 +30,7 @@ public class UserController {
     if (userSession == null || userSession.getId() == null) {
       return "login/login";
     } else {
-      return "redirect:/videos/list";
+      return "redirect:/user/area";
     }
   }
 
@@ -50,6 +50,6 @@ public class UserController {
     userSession.setId(user.getId());
     userSession.setToken(UUID.randomUUID().toString());
 
-    return "redirect:/video/list";
+    return "user/area";
   }
 }
