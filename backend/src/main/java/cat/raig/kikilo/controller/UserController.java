@@ -34,6 +34,11 @@ public class UserController {
     }
   }
 
+  @RequestMapping("/user/area")
+  public String userArea() {
+    return "user/area";
+  }
+
   @RequestMapping(value = "/login.check", method = POST)
   public String doLogin(@ModelAttribute UserLoginRequest request, ModelMap model) {
     User user = userService.getUserByUsername(request.getUser());

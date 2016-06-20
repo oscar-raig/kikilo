@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -34,7 +35,21 @@ public class VideoController {
   public String viewVideoList(ModelMap model) {
     List<Video> myVideos;
     try {
-      myVideos = videoService.getMyVideos();
+      myVideos = videoService.getVideoList();
+    } catch (VideoService.ForbiddenVideoService exception) {
+      LOGGER.error("Error getting session");
+      return "video/error";
+    }
+    model.put("videos", myVideos);
+
+    return "video/list";
+  }
+
+  @RequestMapping("/youtube/list")
+  public String viewYouTubeList(ModelMap model) {
+    List<Video> myVideos;
+    try {
+      myVideos = videoService.getYouTubeVideoList();
     } catch (VideoService.ForbiddenVideoService exception) {
       LOGGER.error("Error getting session");
       return "video/error";
@@ -45,23 +60,28 @@ public class VideoController {
   }
 
 
-  @RequestMapping("/video/create")
-  public String createVideo() {
-    return "video/form";
+  @RequestMapping("/video/create/{id}")
+  public String createVideo(@PathVariable String id, ModelMap model) {
+    Video video = videoService.getYouTubeVideo(id);
+
+    videoService.addVideo(video);
+    List<Video> videos = videoService.getVideoList();
+    model.put("videos",videos);
+    return "video/list";
   }
 
   @RequestMapping(value = "/video", method = POST)
   public String saveVideo(@ModelAttribute SaveFrameworkRequest request, ModelMap model) {
-    List<Video> listOfVideos = videoService.getMyVideos();
+    List<Video> listOfVideos = videoService.getYouTubeVideoList();
     model.put("videos", listOfVideos);
-    Long videoId = new Long(1);
+/*    Long videoId = new Long(1);
     Video video = request.getId() != null ? videoService.getVideo(videoId) : null;
     if (video == null) {
       videoService.addVideo( video);
     } else {
       videoService.updateVideo(video);
     }
-
+*/
     return "redirect:/video/list";
   }
 }

@@ -59,6 +59,12 @@ public class YouTubeRepository implements  cat.raig.kikilo.repository.YouTubeRep
     return null;
   }
 
+  @Override
+  public Video getVideoById(String id) {
+    List<Video> list = findByKeyWords(id);
+    return list.get(0);
+  }
+
   private void initializeYouTube(HttpTransport transport, JsonFactory jsonFactory,
                                  HttpRequestInitializer requestInitializer) {
 

@@ -43,7 +43,7 @@ public class VideoServiceShould {
 
     VideoService videoService = new VideoService(
             videoRepository, null, userService, youTubeRepository);;
-    videoService.getMyVideos();
+    videoService.getYouTubeVideoList();
 
   }
 
@@ -51,7 +51,7 @@ public class VideoServiceShould {
   public void getMyVideosShouldReturnExceptionWhenUserSessionReturnsNull() {
 
     when(userService.getUser(any())).thenReturn(null);
-    videoService.getMyVideos();
+    videoService.getYouTubeVideoList();
   }
 
   @Test
@@ -67,7 +67,7 @@ public class VideoServiceShould {
             "a email", roles));
     when(youTubeRepository.findByKeyWords(any())).thenReturn(expectedListOfVideos);
 
-    List<Video> listOfVidoes = videoService.getMyVideos();
+    List<Video> listOfVidoes = videoService.getYouTubeVideoList();
 
     assertThat(listOfVidoes.size(), is(expectedListOfVideos.size()));
   }

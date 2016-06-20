@@ -28,7 +28,7 @@ public class VideoService {
     this.youTubeRepository = youTubeRepository;
   }
 
-  public  List<Video> getMyVideos()  {
+  public  List<Video> getYouTubeVideoList()  {
 
     User user = getUser();
 
@@ -38,6 +38,15 @@ public class VideoService {
     }
 
     return new ArrayList<>(0);
+  }
+
+  public List<Video> getVideoList() {
+    User user = getUser();
+    return videoRepository.findByOwner(user);
+  }
+
+  public Video getYouTubeVideo(String id) {
+    return youTubeRepository.getVideoById(id);
   }
 
   private User getUser() {
@@ -59,6 +68,7 @@ public class VideoService {
 
   public void addVideo(Video video) {
     User user = getUser();
+    video.setOwner(user);
     videoRepository.save(video);
   }
 
