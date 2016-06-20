@@ -66,7 +66,7 @@ public class VideoController {
 
     videoService.addVideo(video);
     List<Video> videos = videoService.getVideoList();
-    model.put("videos",videos);
+    model.put("videos", videos);
     return "video/list";
   }
 

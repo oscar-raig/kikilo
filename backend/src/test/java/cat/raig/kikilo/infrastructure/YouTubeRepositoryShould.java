@@ -28,10 +28,10 @@ public class YouTubeRepositoryShould {
   @Test
   public void returnOneVideoWhenAnIdIsSupplied() {
     YouTubeRepository youTubeRepository = new YouTubeRepository(Auth.HTTP_TRANSPORT,
-      Auth.JSON_FACTORY, new HttpRequestInitializerYouTube());
+        Auth.JSON_FACTORY, new HttpRequestInitializerYouTube());
     List<Video> videos = youTubeRepository.findByKeyWords(A_YOURUBE_VIDEO_ID);
 
     assertThat(videos.size(), is(1));
-    assertThat(videos.get(0).getUrl(),is(A_YOURUBE_VIDEO_ID));
+    assertThat(videos.get(0).getId(), is(A_YOURUBE_VIDEO_ID));
   }
 }

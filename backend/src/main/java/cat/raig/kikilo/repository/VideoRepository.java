@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface VideoRepository extends CrudRepository<Video, Long> {
   Video findByid(Long id);
+
   List<Video> findByOwner(User owner);
 }

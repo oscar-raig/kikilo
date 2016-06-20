@@ -1,31 +1,33 @@
 package cat.raig.kikilo.entities;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Video {
-  @Id
-  @GeneratedValue
-  private Long id;
+
   private String title;
-  private String url;
+  @Id
+  private String id;
   @ManyToOne
   private User owner;
 
-  public void setId(Long id) {
+  public void setId(String id) {
     this.id = id;
   }
+
+  public String getId() {
+    return this.id;
+  }
+
 
   public Video() {
 
   }
 
-  public Video(String title, String url, Long id) {
+  public Video(String title, String id) {
     this.title = title;
-    this.url = url;
     this.id = id;
   }
 
@@ -33,13 +35,8 @@ public class Video {
     return title;
   }
 
-  public String getUrl() {
-    return url;
-  }
 
-  public Long getId() {
-    return id;
-  }
+
 
   public User getOwner() {
     return owner;

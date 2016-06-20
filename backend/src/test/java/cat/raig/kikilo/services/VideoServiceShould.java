@@ -58,7 +58,7 @@ public class VideoServiceShould {
   public void getMyVideosShouldReturnAListOfVideos() {
     List<Video> expectedListOfVideos = new ArrayList(){
       {
-        add(new Video("a title", "a url", new Long(1)));
+        add(new Video("a title", "a url"));
       }
     };
 
@@ -107,8 +107,7 @@ public class VideoServiceShould {
   public void addVideoShouldReturnExceptionWhenUserSessionIsNull() {
     VideoService videoService = new VideoService(
             videoRepository, null, userService, youTubeRepository);
-    Long videoId = new Long(1);
-    Video video = new Video("a video title", " a url ", videoId);
+    Video video = new Video("a video title", " a url ");
     videoService.addVideo(video);
 
   }
@@ -117,8 +116,7 @@ public class VideoServiceShould {
   public void addVideoShouldReturnExceptionWhenUserSessionReturnsNull() {
 
     when(userService.getUser(any())).thenReturn(null);
-    Long videoId = new Long(1);
-    Video video = new Video("a video title", " a url ", videoId);
+    Video video = new Video("a video title", " a url ");
     videoService.addVideo(video);
   }
 
@@ -128,8 +126,7 @@ public class VideoServiceShould {
     List<String> roles = Arrays.asList("View");
     when(userService.getUser(any())).thenReturn(new User("a username", "a password ",
             "a email", roles));
-    Long videoId = new Long(1);
-    Video video = new Video("a video title", " a url ", videoId);
+    Video video = new Video("a video title", " a url ");
     videoService.addVideo(video);
 
     verify(videoRepository).save(video);
@@ -141,8 +138,7 @@ public class VideoServiceShould {
   public void updateVeideoShouldReturnExceptionWhenUserSessionIsNull() {
     VideoService videoService = new VideoService(
             videoRepository, null, userService, youTubeRepository);
-    Long videoId = new Long(1);
-    Video video = new Video("a video title", " a url ", videoId);
+    Video video = new Video("a video title", " a url ");
     videoService.updateVideo(video);
 
   }
@@ -151,8 +147,7 @@ public class VideoServiceShould {
   public void updateVideoShouldReturnExceptionWhenUserSessionReturnsNull() {
 
     when(userService.getUser(any())).thenReturn(null);
-    Long videoId = new Long(1);
-    Video video = new Video("a video title", " a url ", videoId);
+    Video video = new Video("a video title", " a url ");
     videoService.updateVideo(video);
   }
 
@@ -162,8 +157,7 @@ public class VideoServiceShould {
     List<String> roles = Arrays.asList("View");
     when(userService.getUser(any())).thenReturn(new User("a username", "a password ",
             "a email", roles));
-    Long videoId = new Long(1);
-    Video video = new Video("a video title", " a url ", videoId);
+    Video video = new Video("a video title", " a url ");
     videoService.updateVideo(video);
 
     verify(videoRepository).save(video);
