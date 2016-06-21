@@ -6,4 +6,4 @@ jdk:
 script: cd kikilo && gradle check
 
 after_success:
-- cd kikilo && gradle jacocoTestReport coveralls
+- cd backend && gradle jacocoTestReport coveralls
