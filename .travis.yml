@@ -1,9 +1,9 @@
-
 language: java
 jdk:
 - oraclejdk8
 
-script: cd backend && gradle check
+script: 
+- cd backend && ./gradlew clean check
 
 after_success:
 - cd backend && gradle jacocoTestReport coveralls
