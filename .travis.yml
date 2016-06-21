@@ -3,7 +3,7 @@ language: java
 jdk:
 - oraclejdk8
 
-script: cd kikilo && gradle check
+script: cd backend && gradle check
 
 after_success:
 - cd backend && gradle jacocoTestReport coveralls
