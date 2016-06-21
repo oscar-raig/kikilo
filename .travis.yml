@@ -1,9 +1,9 @@
 language: java
 jdk:
 - oraclejdk8
-
-script: 
+script:
 - cd backend && ./gradlew clean check
-
 after_success:
 - cd backend && gradle jacocoTestReport coveralls
+dd:
+  secure: GSVcfc7rayX/ZHllPDUTElsgnhn3m2nhDOTi0O7l7E/iKls5o+l3nw7our/6ojifSWxNO8QkCEJfh/kPGn7uRca87pj0gn+m5JFBSL+7s5+I3l3bOI70sDcekDir7SXseKNMXnocTX/pNXO9i6MGvdtItr70E8aHYVNXHjBIOwqQFzHbQuxSNArVibVkTHHCUcuPG4BMqrAyb8UBBOA/DnVEFVTIFE3xyHV2GpyZpsrLx9FfCWTTAiOxZdFHV4y5pVbM/bfOx4NjzMY4R/TOcipeaRW76paOES37VGlk4LAZlAm5rYHWNI3HMlAhEq75QjQvaQjiNsiaflb4NIaSt2EikxRbevKcjkHdNJ3DaHJ+EUyqx9jvQhvUsi/nCAldpPQAtrgao5TZ1Cp8db638cXrjBzXlYwDhOvk+PV6tLYUq64zD0M2TED5TUnmGXyVNjjkHE6BzA1K5nLVYVVh5JFJZn/4nXLIo48uKsCIJhwrt2tMh6bY0A/rCmJVn++BBgEBK4j8ZUN31/NhJogJ1ZAVsv/5fVix5S2EG0bw+yA7jmA0W2GLerPvNYK0CGMlbuk3mKRhjzz77VM01eMmqb/oOWVIU/g1mWKTdFoCaX7DuqCjSg6TDEeBh+kcJHn+l1kGFMYslV/b5A4LF0XeR0sslN3g34P/O/L32h3tllU=
